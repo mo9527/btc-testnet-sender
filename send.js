@@ -14,9 +14,11 @@ function downloadSigner() {
 function buildTx(from, to, value) {
     value = value * 10000000;
 
+    let param = {inputs: [{addresses: [from]}], outputs: [{addresses: [to], value: value}]};
+
     let url = "http://api.blockcypher.com/v1/btc/test3/txs/new";
     let response = httpSync("POST",url, {
-        json: {inputs: [{addresses: [from]}], outputs: [{addresses: [to], value: value}]}
+        json: param
     });
 
     fs.writeFileSync("./send.json", response.getBody('utf8'));
@@ -28,7 +30,9 @@ function signTx(pk) {
     // let goBuild = "go build -o signer.exe";
     // childProcess.execSync(goBuild);
 
-    let signCommand = "signer.exe " +  getToSign().replace("\n","") + " " + pk;
+    let toSignStr = getToSign();
+
+    let signCommand = "signer.exe " +  toSignStr + " " + pk;
     let result = childProcess.execSync(signCommand);
 
     return result.toString();
@@ -43,7 +47,10 @@ function sendSignTx(signTx, publicKey) {
     sendJson.pubkeys = [];
     sendJson.pubkeys[0] = publicKey;
 
-    fs.writeFileSync("./send.json", JSON.stringify(sendJson));
+
+    let jsonStr = JSON.stringify(sendJson);
+    jsonStr = jsonStr.replace(new RegExp("\\\\n", "g"), "");
+    fs.writeFileSync("./send.json", jsonStr);
 
     let sendCommand = "curl -d @send.json http://api.blockcypher.com/v1/btc/test3/txs/send";
     let result = childProcess.execSync(sendCommand);
@@ -54,18 +61,18 @@ function sendSignTx(signTx, publicKey) {
 
 function getToSign() {
     let sendJson = require("./send.json");
-    return sendJson.tosign;
+    return sendJson.tosign[0];
 }
 
 
 
 
 function main() {
-    let from = args.from;
-    let to = args.to;
-    let value = args.value;
-    let pk = args.pk;
-    let publicKey = args.pubkey;
+    let from = args.f;
+    let to = args.t;
+    let value = args.v;
+    let pk = args.k;
+    let publicKey = args.p;
 
     let bigNumberPk = new BigNumber(pk);
 
