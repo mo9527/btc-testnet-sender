@@ -8,14 +8,14 @@
 
 Usage:
 
-    # node send.js -f fromAddress -t toAddress -v amount -k fromAddressPrivateKey -p fromAddressPublicKey
+    # node send.js fromAddress toAddress amount fromAddressPrivateKey fromAddressPublicKey
 
 
 
 Params :
 
-    -f: transfer testnet btc from address
-    -t: transfer testnet btc to address
-    -v: transfer testnet btc amount
-    -k: the private key of from address (ECKey Bigint type)
-    -p: the public key of rom address
+    args[1]: transfer testnet btc from address
+    args[2]: transfer testnet btc to address
+    args[3]: transfer testnet btc amount
+    args[4]: the private key of from address (ECKey Bigint type)
+    args[5]: the public key of from address
