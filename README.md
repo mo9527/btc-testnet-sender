@@ -8,7 +8,7 @@
 
 Usage:
 
-    # node send.js fromAddress toAddress amount fromAddressPrivateKey fromAddressPublicKey
+    # node send.js {fromAddress} {toAddress} {amount} {fromAddressPrivateKey} {fromAddressPublicKey}
 
 
 
