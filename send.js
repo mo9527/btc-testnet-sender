@@ -2,7 +2,7 @@ var httpSync = require('sync-request');
 var fs = require("fs");
 var childProcess = require('child_process');
 var BigNumber = require('bignumber.js').BigNumber;
-var args = require('minimist')(process.argv.slice(2));
+var args = process.argv.slice(2);
 
 function downloadSigner() {
     let url = "https://raw.githubusercontent.com/blockcypher/btcutils/master/signer/signer.go";
@@ -66,21 +66,18 @@ function getToSign() {
 
 
 
-
 function main() {
-    let from = args.f;
-    let to = args.t;
-    let value = args.v;
-    let pk = args.k;
-    let publicKey = args.p;
+    let from = args[2];
+    let to = args[3];
+    let value = args[4];
+    let pk = args[5];
+    let publicKey = args[6];
 
     let bigNumberPk = new BigNumber(pk);
+    let hexPk = bigNumberPk.toString(16);
 
-    let hexStr = bigNumberPk.toString(16);
-
-    downloadSigner();
     buildTx(from, to, value);
-    let transaction = signTx(hexStr);
+    let transaction = signTx(hexPk);
 
     sendSignTx(transaction, publicKey)
 }
