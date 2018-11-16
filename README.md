@@ -1,5 +1,11 @@
 # btc-testnet-sender
 
+## Build
+
+    # npm install
+
+
+
 Usage:
 
     # node send.js -from fromAddress -to toAddress -value amount -pk fromAddressPrivateKey -pubkey fromAddressPublicKey
