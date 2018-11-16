@@ -14,8 +14,8 @@ Usage:
 
 Params :
 
-    args[1]: transfer testnet btc from address
-    args[2]: transfer testnet btc to address
-    args[3]: transfer testnet btc amount
-    args[4]: the private key of from address (ECKey Bigint type)
+    args[1]: the testnet btc address that send from
+    args[2]: the testnet btc address that send to
+    args[3]: send amount
+    args[4]: the private key of from address (Bigint private key)
     args[5]: the public key of from address
