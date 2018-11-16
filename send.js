@@ -67,11 +67,11 @@ function getToSign() {
 
 
 function main() {
-    let from = args[2];
-    let to = args[3];
-    let value = args[4];
-    let pk = args[5];
-    let publicKey = args[6];
+    let from = args[0];
+    let to = args[1];
+    let value = args[2];
+    let pk = args[3];
+    let publicKey = args[4];
 
     let bigNumberPk = new BigNumber(pk);
     let hexPk = bigNumberPk.toString(16);
