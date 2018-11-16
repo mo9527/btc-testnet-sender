@@ -1,0 +1,16 @@
+{
+  "name": "btc-client",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./send.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bignumber.js": "^7.0.1",
+    "minimist": "^1.2.0",
+    "sync-request": "6.0.0"
+  }
+}
