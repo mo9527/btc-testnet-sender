@@ -12,7 +12,7 @@ function downloadSigner() {
 }
 
 function buildTx(from, to, value) {
-    value = value * 10000000;
+    value = value * 100000000;
 
     let param = {inputs: [{addresses: [from]}], outputs: [{addresses: [to], value: value}]};
 
